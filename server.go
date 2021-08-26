@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-
+	"syscall"
 	"github.com/zach-klippenstein/goadb/internal/errors"
 	"github.com/zach-klippenstein/goadb/wire"
 )
@@ -139,6 +139,9 @@ var localFilesystem = &filesystem{
 		return isExecutable(path)
 	},
 	CmdCombinedOutput: func(name string, arg ...string) ([]byte, error) {
-		return exec.Command(name, arg...).CombinedOutput()
+		
+		cmd := exec.Command(name, arg...)
+		cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+		return cmd.CombinedOutput()
 	},
 }
