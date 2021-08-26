@@ -2,13 +2,13 @@ package adb
 
 import (
 	"fmt"
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
 	"io"
 	"os"
 	"strings"
 	"time"
 
-	"github.com/zach-klippenstein/goadb/internal/errors"
-	"github.com/zach-klippenstein/goadb/wire"
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
 )
 
 // MtimeOfClose should be passed to OpenWrite to set the file modification time to the time the Close

@@ -2,9 +2,9 @@ package adb
 
 import (
 	"bufio"
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
 	"strings"
 
-	"github.com/zach-klippenstein/goadb/internal/errors"
 )
 
 type DeviceInfo struct {

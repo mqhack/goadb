@@ -1,12 +1,12 @@
 package adb
 
 import (
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
 	"io"
 	"os"
 	"time"
 
-	"github.com/zach-klippenstein/goadb/internal/errors"
-	"github.com/zach-klippenstein/goadb/wire"
 )
 
 var zeroTime = time.Unix(0, 0).UTC()

@@ -2,9 +2,9 @@ package wire
 
 import (
 	"fmt"
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
 	"io"
 
-	"github.com/zach-klippenstein/goadb/internal/errors"
 )
 
 // Sender sends messages to the server.

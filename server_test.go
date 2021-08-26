@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zach-klippenstein/goadb/wire"
+	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
 )
 
 func TestNewServer_ZeroConfig(t *testing.T) {
