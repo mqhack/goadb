@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
+	"github.com/AntHuabei/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/wire"
 )
 
 /*

@@ -2,7 +2,7 @@ package wire
 
 import (
 	"fmt"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/internal/errors"
 	"io"
 
 )

@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
+	"github.com/AntHuabei/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/wire"
 )
 
 // syncFileWriter wraps a SyncConn that has requested to send a file.

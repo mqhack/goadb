@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/internal/errors"
 )
 
 func TestAdbServerError_NoRequest(t *testing.T) {

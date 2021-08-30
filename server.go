@@ -3,8 +3,8 @@ package adb
 import (
 	stderrors "errors"
 	"fmt"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
+	"github.com/AntHuabei/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/wire"
 	"os"
 	"os/exec"
 	"strings"

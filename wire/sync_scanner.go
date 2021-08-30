@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/internal/errors"
 )
 
 type SyncScanner interface {

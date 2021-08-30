@@ -2,10 +2,10 @@ package adb
 
 import (
 	"fmt"
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/internal/errors"
+	"github.com/AntHuabei/goadb/internal/errors"
 	"strconv"
 
-	"github.com/SmallCatMiaoMiaoMiaoMiao/goadb/wire"
+	"github.com/AntHuabei/goadb/wire"
 )
 
 /*
