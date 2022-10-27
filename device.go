@@ -2,11 +2,12 @@ package adb
 
 import (
 	"fmt"
-	"github.com/mqhack/goadb/internal/errors"
 	"io"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/mqhack/goadb/internal/errors"
 
 	"github.com/mqhack/goadb/wire"
 )

@@ -1,6 +1,8 @@
 package adb
 
-import "github.com/mqhack/goadb/internal/errors"
+import (
+	"github.com/mqhack/goadb/internal/errors"
+)
 
 // DeviceState represents one of the 3 possible states adb will report devices.
 // A device can be communicated with when it's in StateOnline.
@@ -14,6 +16,7 @@ type DeviceState int8
 
 const (
 	StateInvalid DeviceState = iota
+	StateAuthorizing
 	StateUnauthorized
 	StateDisconnected
 	StateOffline
@@ -25,6 +28,7 @@ var deviceStateStrings = map[string]DeviceState{
 	"offline":      StateOffline,
 	"device":       StateOnline,
 	"unauthorized": StateUnauthorized,
+	"authorizing":  StateAuthorizing,
 }
 
 func parseDeviceState(str string) (DeviceState, error) {
