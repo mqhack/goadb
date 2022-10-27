@@ -8,8 +8,8 @@ import (
 	"log"
 	"time"
 
-	adb "github.com/AntHuabei/goadb"
-	"github.com/AntHuabei/goadb/internal/errors"
+	adb "github.com/mqhack/goadb"
+	"github.com/mqhack/goadb/internal/errors"
 )
 
 var (

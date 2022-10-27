@@ -3,8 +3,8 @@ package adb
 import (
 	stderrors "errors"
 	"fmt"
-	"github.com/AntHuabei/goadb/internal/errors"
-	"github.com/AntHuabei/goadb/wire"
+	"github.com/mqhack/goadb/internal/errors"
+	"github.com/mqhack/goadb/wire"
 	"os"
 	"os/exec"
 	"strings"
@@ -139,7 +139,7 @@ var localFilesystem = &filesystem{
 		return isExecutable(path)
 	},
 	CmdCombinedOutput: func(name string, arg ...string) ([]byte, error) {
-		
+
 		cmd := exec.Command(name, arg...)
 		cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 		return cmd.CombinedOutput()

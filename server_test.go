@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/mqhack/goadb/wire"
 	"github.com/stretchr/testify/assert"
-	"github.com/AntHuabei/goadb/wire"
 )
 
 func TestNewServer_ZeroConfig(t *testing.T) {

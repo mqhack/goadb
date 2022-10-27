@@ -2,9 +2,8 @@ package wire
 
 import (
 	"fmt"
-	"github.com/AntHuabei/goadb/internal/errors"
+	"github.com/mqhack/goadb/internal/errors"
 	"io"
-
 )
 
 // Sender sends messages to the server.

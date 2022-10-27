@@ -1,6 +1,6 @@
 package wire
 
-import "github.com/AntHuabei/goadb/internal/errors"
+import "github.com/mqhack/goadb/internal/errors"
 
 const (
 	// The official implementation of adb imposes an undocumented 255-byte limit
@@ -12,6 +12,7 @@ const (
 Conn is a normal connection to an adb server.
 
 For most cases, usage looks something like:
+
 	conn := wire.Dial()
 	conn.SendMessage(data)
 	conn.ReadStatus() == StatusSuccess || StatusFailure

@@ -2,9 +2,8 @@ package adb
 
 import (
 	"bufio"
-	"github.com/AntHuabei/goadb/internal/errors"
+	"github.com/mqhack/goadb/internal/errors"
 	"strings"
-
 )
 
 type DeviceInfo struct {

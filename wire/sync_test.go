@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/mqhack/goadb/internal/errors"
 	"github.com/stretchr/testify/assert"
-	"github.com/AntHuabei/goadb/internal/errors"
 )
 
 var (

@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/cheggaaa/pb"
-	"github.com/AntHuabei/goadb"
+	"github.com/mqhack/goadb"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
