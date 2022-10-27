@@ -3,12 +3,13 @@ package adb
 import (
 	stderrors "errors"
 	"fmt"
-	"github.com/mqhack/goadb/internal/errors"
-	"github.com/mqhack/goadb/wire"
 	"os"
 	"os/exec"
 	"strings"
 	"syscall"
+
+	"github.com/mqhack/goadb/internal/errors"
+	"github.com/mqhack/goadb/wire"
 )
 
 const (
@@ -141,7 +142,8 @@ var localFilesystem = &filesystem{
 	CmdCombinedOutput: func(name string, arg ...string) ([]byte, error) {
 
 		cmd := exec.Command(name, arg...)
-		cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+		// cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+		cmd.SysProcAttr = &syscall.SysProcAttr{}
 		return cmd.CombinedOutput()
 	},
 }
