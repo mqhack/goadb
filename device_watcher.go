@@ -133,11 +133,12 @@ func publishDevices(watcher *deviceWatcherImpl) {
 
 			log.Printf("[DeviceWatcher] server died, restarting in %s…", delay)
 			time.Sleep(delay)
-			if err := watcher.server.Start(); err != nil {
-				log.Println("[DeviceWatcher] error restarting server, giving up")
-				watcher.reportErr(err)
-				return
-			} // Else server should be running, continue listening.
+			// NOTE here we restart the server manually so don't bother
+			// if err := watcher.server.Start(); err != nil {
+			// 	log.Println("[DeviceWatcher] error restarting server, giving up")
+			// 	watcher.reportErr(err)
+			// 	return
+			// } // Else server should be running, continue listening.
 		} else {
 			// Unknown error, don't retry.
 			watcher.reportErr(err)
