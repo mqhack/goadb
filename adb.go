@@ -2,8 +2,9 @@ package adb
 
 import (
 	"fmt"
-	"github.com/mqhack/goadb/internal/errors"
 	"strconv"
+
+	"github.com/mqhack/goadb/internal/errors"
 
 	"github.com/mqhack/goadb/wire"
 )
@@ -137,6 +138,22 @@ func (c *Adb) ListDevices() ([]*DeviceInfo, error) {
 	return devices, nil
 }
 
+func (c *Adb) ListForwards() ([]*DeviceInfo, error) {
+	resp, err := roundTripSingleResponse(c.server, "host:list-forward")
+	if err != nil {
+		return nil, wrapClientError(err, c, "ListForwards")
+	}
+
+	fmt.Printf("forward resp: %s\n", string(resp))
+	// devices, err := parseDeviceList(string(resp), parseDeviceLong)
+	// if err != nil {
+	// 	return nil, wrapClientError(err, c, "ListDevices")
+	// }
+	// return devices, nil
+
+	return nil, nil
+}
+
 /*
 Connect connect to a device via TCP/IP
 
@@ -161,3 +178,123 @@ func (c *Adb) parseServerVersion(versionRaw []byte) (int, error) {
 	}
 	return int(version), nil
 }
+
+func (c *Adb) RestartAdbdTcpip(serial string, devicePort int) error {
+	// cmd := fmt.Sprintf("host-serial:%s:tcpip:%d", serial, devicePort)
+	// cmd := fmt.Sprintf("host:version")
+	conn, err := c.Dial()
+	if err != nil {
+		return err
+	}
+
+	defer conn.Close()
+
+	req1 := fmt.Sprintf("host:tport:serial:%s", serial)
+	if err = conn.SendMessage([]byte(req1)); err != nil {
+		fmt.Printf("restartadbd error1: %v\n", err)
+		return err
+	}
+
+	if _, err = conn.ReadStatus(req1); err != nil {
+		fmt.Printf("restartadbd error2: %v\n", err)
+		return err
+	}
+
+	// resp1, err := conn.ReadMessage()
+	// if err != nil {
+	// 	fmt.Printf("error3: %v\n", err)
+	// 	return err
+	// }
+
+	// fmt.Printf("RestartAdbdTcpip resp1: %s\n", string(resp1))
+
+	req2 := fmt.Sprintf("tcpip:%d", devicePort)
+	if err = conn.SendMessage([]byte(req2)); err != nil {
+		fmt.Printf("restartadbd error4: %v\n", err)
+		return err
+	}
+
+	if _, err = conn.ReadStatus(req2); err != nil {
+		fmt.Printf("restartadbd error5: %v\n", err)
+		return err
+	}
+
+	// resp2, err := conn.ReadMessage()
+	// if err != nil {
+	// 	fmt.Printf("error6: %v\n", err)
+	// 	return err
+	// }
+
+	// fmt.Printf("RestartAdbdTcpip resp2 = %s\n", string(resp2))
+	// devices, err := parseDeviceList(string(resp), parseDeviceLong)
+	// if err != nil {
+	// 	return nil, wrapClientError(err, c, "ListDevices")
+	// }
+	return nil
+}
+
+func (c *Adb) ForwardDevice(serial string, localPort, devicePort int) error {
+	conn, err := c.Dial()
+	if err != nil {
+		return err
+	}
+
+	defer conn.Close()
+
+	req1 := fmt.Sprintf("host:tport:serial:%s", serial)
+	if err = conn.SendMessage([]byte(req1)); err != nil {
+		fmt.Printf("fwd error1: %v\n", err)
+		return err
+	}
+
+	if _, err = conn.ReadStatus(req1); err != nil {
+		fmt.Printf("fwd error2: %v\n", err)
+		return err
+	}
+
+	// resp1, err := conn.ReadMessage()
+	// if err != nil {
+	// 	fmt.Printf("error3: %v\n", err)
+	// 	return err
+	// }
+
+	// fmt.Printf("RestartAdbdTcpip resp1: %s\n", string(resp1))
+
+	req2 := fmt.Sprintf("host:forward:tcp:%d;tcp:%d", localPort, devicePort)
+	if err = conn.SendMessage([]byte(req2)); err != nil {
+		fmt.Printf("fwd error4: %v\n", err)
+		return err
+	}
+
+	if _, err = conn.ReadStatus(req2); err != nil {
+		fmt.Printf("fwd error5: %v\n", err)
+		return err
+	}
+
+	// resp2, err := conn.ReadMessage()
+	// if err != nil {
+	// 	fmt.Printf("fwd error6: %v\n", err)
+	// 	return err
+	// }
+
+	// fmt.Printf("fwd resp2 = %s\n", string(resp2))
+	// devices, err := parseDeviceList(string(resp), parseDeviceLong)
+	// if err != nil {
+	// 	return nil, wrapClientError(err, c, "ListDevices")
+	// }
+	return nil
+}
+
+// func (c *Adb) ListForwards() error {
+// 	resp, err := roundTripSingleResponse(c.server, fmt.Sprintf("host:forward:tcp:%d;tcp:%d", serial, localPort, devicePort))
+// 	if err != nil {
+// 		return wrapClientError(err, c, "ForwardDevice")
+// 	}
+
+// 	fmt.Printf("resp = %s", string(resp))
+// 	// devices, err := parseDeviceList(string(resp), parseDeviceLong)
+// 	// if err != nil {
+// 	// 	return nil, wrapClientError(err, c, "ListDevices")
+// 	// }
+// 	return nil
+// }

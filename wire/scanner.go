@@ -2,8 +2,8 @@ package wire
 
 import (
 	"encoding/binary"
+	"fmt"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/mqhack/goadb/internal/errors"
@@ -70,7 +70,7 @@ func (s *realScanner) ReadMessage() ([]byte, error) {
 }
 
 func (s *realScanner) ReadUntilEof() ([]byte, error) {
-	data, err := ioutil.ReadAll(s.reader)
+	data, err := io.ReadAll(s.reader)
 	if err != nil {
 		return nil, errors.WrapErrorf(err, errors.NetworkError, "error reading until EOF")
 	}
@@ -158,6 +158,7 @@ func readHexLength(r io.Reader) (int, error) {
 		return 0, errIncompleteMessage("length", n, 4)
 	}
 
+	fmt.Printf("hex length: %s\n", string(lengthHex))
 	length, err := strconv.ParseInt(string(lengthHex), 16, 64)
 	if err != nil {
 		return 0, errors.WrapErrorf(err, errors.NetworkError, "could not parse hex length %v", lengthHex)

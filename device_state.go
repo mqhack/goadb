@@ -19,6 +19,8 @@ const (
 	StateAuthorizing
 	StateUnauthorized
 	StateDisconnected
+	StateSideload
+	StateRecovery
 	StateOffline
 	StateOnline
 )
@@ -29,12 +31,14 @@ var deviceStateStrings = map[string]DeviceState{
 	"device":       StateOnline,
 	"unauthorized": StateUnauthorized,
 	"authorizing":  StateAuthorizing,
+	"sideload":     StateSideload,
+	"recovery":     StateRecovery,
 }
 
 func parseDeviceState(str string) (DeviceState, error) {
 	state, ok := deviceStateStrings[str]
 	if !ok {
-		return StateInvalid, errors.Errorf(errors.ParseError, "invalid device state: %q", state)
+		return StateInvalid, errors.Errorf(errors.ParseError, "invalid device state: %s", str)
 	}
 	return state, nil
 }

@@ -2,8 +2,9 @@ package adb
 
 import (
 	"bufio"
-	"github.com/mqhack/goadb/internal/errors"
 	"strings"
+
+	"github.com/mqhack/goadb/internal/errors"
 )
 
 type DeviceInfo struct {
@@ -39,10 +40,12 @@ func newDevice(serial string, attrs map[string]string) (*DeviceInfo, error) {
 }
 
 func parseDeviceList(list string, lineParseFunc func(string) (*DeviceInfo, error)) ([]*DeviceInfo, error) {
+	// fmt.Printf("list: %s\n", list)
 	devices := []*DeviceInfo{}
 	scanner := bufio.NewScanner(strings.NewReader(list))
 
 	for scanner.Scan() {
+		// fmt.Printf("line: %s\n", scanner.Text())
 		device, err := lineParseFunc(scanner.Text())
 		if err != nil {
 			return nil, err
